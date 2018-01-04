@@ -1,0 +1,2 @@
+# Easy-slider
+Wordpress plugin
