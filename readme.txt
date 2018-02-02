@@ -46,6 +46,98 @@ The following template tag is available to display the gallery
 		echo easy_slider();
 	}
 
+= PHP usage =
+
+$slides = easy_slider_get_images();
+        if(!count($slides)){
+            $slides = array(
+                0 => array(
+                    'ID' => 6,
+                    'post_id' => 5,
+                    'image_id' => 10,
+                    'image_order' => 0,
+                    'image_title' => '',
+                    'image_subtitle' => '',
+                    'image_signature' => '',
+                    'image_content' => '',
+                    'image_src' => array (
+                        'url' => 'img1.jpg',
+                        'sizes' => array(
+                            'thumbnail' => array
+                            (
+                                'file' => 'img1-150x150.jpg',
+                                'width' => 150,
+                                'height' => 150,
+                            ),
+                            'medium' => array
+                            (
+                                'file' => 'img1-300x200.jpg',
+                                'width' => 300,
+                                'height' => 200,
+                                'mime-type' => 'image/jpeg',
+                            ),
+                            'medium_large' => array
+                            (
+                                'file' => 'img1-768x512.jpg',
+                                'width' => 768,
+                                'height' => 512,
+                                'mime-type' => 'image/jpeg'
+                            ),
+                            'large' => array
+                            (
+                                'file' => 'img-1024x683.jpg',
+                                'width' => 1024,
+                                'height' => 683,
+                                'mime-type' => 'image/jpeg'
+                            )
+                        )
+                    )
+                ),
+                1 => array(
+                    'ID' => 6,
+                    'post_id' => 5,
+                    'image_id' => 10,
+                    'image_order' => 0,
+                    'image_title' => '',
+                    'image_subtitle' => '',
+                    'image_signature' => '',
+                    'image_content' => '',
+                    'image_src' => array (
+                        'url' => 'img2.jpg',
+                        'sizes' => array(
+                            'thumbnail' => array
+                            (
+                                'file' => 'img2-150x150.jpg',
+                                'width' => 150,
+                                'height' => 150,
+                                'mime-type' => 'image/jpeg'
+                            ),
+                            'medium' => array
+                            (
+                                'file' => 'img2-300x200.jpg',
+                                'width' => 300,
+                                'height' => 200,
+                                'mime-type' => 'image/jpeg',
+                            ),
+                            'medium_large' => array
+                            (
+                                'file' => 'img2-768x512.jpg',
+                                'width' => 768,
+                                'height' => 512,
+                                'mime-type' => 'image/jpeg'
+                            ),
+                            'large' => array
+                            (
+                                'file' => 'img2-1024x683.jpg',
+                                'width' => 1024,
+                                'height' => 683,
+                                'mime-type' => 'image/jpeg'
+                            )
+                        )
+                    )
+                )
+           );
+	   
 = Developer Friendly =
 
 1. Modify the gallery HTML using filters
