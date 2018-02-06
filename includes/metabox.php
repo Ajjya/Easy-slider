@@ -64,6 +64,12 @@ function easy_slider_metabox() {
                                     <td><input name="slider_subtitle_[]>" id="slider_subtitle_' . $one_attachment['ID'] . '" type="text" value="' . $one_attachment['image_subtitle'] . '"/></td>
                                 </tr>
                                 <tr>
+                                    <th><label for="button_name_' . $one_attachment['ID'] . '">Button name</label></th>
+                                    <td><input name="button_name_[]" id="button_name_' . $one_attachment['ID'] . '" type="text" value="' . $one_attachment['button_name'] . '"/></td>
+                                    <th><label for="button_link' . $one_attachment['ID'] . '">Button link</label></th>
+                                    <td><input name="button_link_[]>" id="button_link_' . $one_attachment['ID'] . '" type="text" value="' . $one_attachment['button_link'] . '"/></td>
+                                </tr>
+                                <tr>
                                     <th colspan="1"><label for="image_signature_' . $one_attachment['ID'] . '">Image signature</label></th>
                                     <td colspan="3"><input name="image_signature_[]" id="image_signature_' . $one_attachment['ID'] . '" type="text" value="' . $one_attachment['image_signature'] . '"/></td>
                                 </tr>
@@ -71,7 +77,7 @@ function easy_slider_metabox() {
                                     <th colspan="1"><label for="slider_content_' . $one_attachment['ID'] . '">Slider content</label></th>
                                     <td colspan="3"><textarea name="slider_content_[]" id="slider_content_' . $one_attachment['ID'] . '">' . $one_attachment['image_content'] . '</textarea></td>
                                 </tr>
-                            </table>
+                             </table>
                         </div>
                     </div>
                 </li>';
@@ -165,6 +171,12 @@ function easy_slider_metabox() {
                                                     <td><input name="slider_title[]" type="text"/></td>\
                                                     <th><label>Slider subtitle</label></th>\
                                                     <td><input name="slider_subtitle[]" type="text"/></td>\
+                                                </tr>\
+                                                <tr>\
+                                                    <th><label>Button name</label></th>\
+                                                    <td><input name="button_name[]" type="text"/></td>\
+                                                    <th><label>Button link</label></th>\
+                                                    <td><input name="button_link[]" type="text"/></td>\
                                                 </tr>\
                                                 <tr>\
                                                     <th colspan="1"><label>Image signature</label></th>\
@@ -301,10 +313,10 @@ function easy_slider_save_post( $post_id ) {
                     'image_title' => $_POST['slider_title'][$key],
                     'image_subtitle' => $_POST['slider_subtitle'][$key],
                     'image_signature' => $_POST['image_signature'][$key],
-                    'image_content' => $_POST['slider_content'][$key]
+                    'image_content' => $_POST['slider_content'][$key],
+                    'button_name' => $_POST['button_name'][$key],
+                    'button_link' => $_POST['button_link'][$key],
                 );
-
-
                 $DB->addAttachments($arr_to_add);
             }
         }
@@ -326,7 +338,9 @@ function easy_slider_save_post( $post_id ) {
                 'image_title' => $_POST['slider_title_'][$key],
                 'image_subtitle' => $_POST['slider_subtitle_'][$key],
                 'image_signature' => $_POST['image_signature_'][$key],
-                'image_content' => $_POST['slider_content_'][$key]
+                'image_content' => $_POST['slider_content_'][$key],
+                'button_name' => $_POST['button_name_'][$key],
+                'button_link' => $_POST['button_link_'][$key]
             );
 
             $DB->editAttachments($arr_to_edit);

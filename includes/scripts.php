@@ -16,7 +16,7 @@ function easy_slider_scripts() {
 		return;
 
 	// JS
-	wp_register_script( 'responsive-bg', EASY_SLIDER_URL . 'includes/lib/responsiveBg.js', array( 'jquery' ), EASY_SLIDER_VERSION, false );
+	wp_register_script( 'responsive-img', EASY_SLIDER_URL . 'includes/lib/responsiveImages.js', array( 'jquery' ), EASY_SLIDER_VERSION, false );
 	wp_register_script( 'slick', EASY_SLIDER_URL . 'includes/lib/slick/slick.min.js', array( 'jquery', 'responsive-bg' ), EASY_SLIDER_VERSION, false );
 	wp_register_script( 'lightbox', EASY_SLIDER_URL . 'includes/lib/lightbox/js/lightbox.js', array( 'jquery' ), EASY_SLIDER_VERSION, false );
 
@@ -38,28 +38,29 @@ function easy_slider_scripts() {
 	
 
 	// only load the JS if gallery images are linked or the featured image is linked
-	$show_type = easy_slider_get_showtype();
-	switch ( $show_type ) {
-		case 'slider':
-			// CSS
-			wp_enqueue_style( 'slick' );
+	$show_types = easy_slider_get_showtype();
 
-			// JS
-			wp_enqueue_script( 'responsive-bg');
-			wp_enqueue_script( 'slick' );
+	foreach ($show_types as $one_show_type) {
+		switch ( $one_show_type) {
+			case 'slider':
+				// CSS
+				wp_enqueue_style( 'slick' );
 
-		break;
-		case 'gallery':
+				// JS
+				wp_enqueue_script( 'responsive-img');
+				wp_enqueue_script( 'slick' );
 
-			// CSS
-			wp_enqueue_style( 'lightbox' );
+			break;
+			case 'gallery':
+				// CSS
+				wp_enqueue_style( 'lightbox' );
+				// JS
+				wp_enqueue_script( 'lightbox' );
 
-			// JS
-			wp_enqueue_script( 'lightbox' );
-
-		break;
+			break;
+		}
 	}
-
+	
 	wp_enqueue_style( 'easy-slider' );
 
 	// allow developers to load their own scripts here

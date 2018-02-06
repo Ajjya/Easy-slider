@@ -54,7 +54,8 @@ if ( !function_exists( 'easy_slider_get_showtype' ) ) :
 		$settings = (array) get_option( 'easy-slider' );
 
 		// set fancybox as default for when the settings page hasn't been saved
-		$show_type = isset( $settings['show_types'] ) ? esc_attr( $settings['show_types'] ) : 'slider';
+		$show_type = isset( $settings['show_types'] ) ? $settings['show_types'] : array('slider');
+		//var_dump($show_type);
 
 		return $show_type;
 
@@ -163,13 +164,17 @@ function easy_slider_get_images() {
  * @since 1.0
  */
 
-function easy_slider_shortcode() {
-
+function easy_slider_shortcode($atts) {
 	// return early if the post type is not allowed to have a gallery
 	if ( ! easy_slider_allowed_post_type() )
 		return;
 
-	return easy_slider();
+	$atts = shortcode_atts(array(
+      'type' => 'slider'
+    ), $atts, 'easy_slider');
+
+
+	return easy_slider($atts['type']);
 }
 add_shortcode( 'easy_slider', 'easy_slider_shortcode' );
 
@@ -224,14 +229,14 @@ function easy_slider_slick($attachments) {
 		<div class="easy_slider">
 			
 			<?php
-				$image_small_f = array();
-				$image_smallest_f = array();
 				foreach($attachments as $one_attachment):
-					$image_small_f[] = $one_attachment['image_src']['sizes']["large"]['file'];
-					$image_smallest_f[] = $one_attachment['image_src']['sizes']["medium_large"]['file'];
+					$image_biggest_f = $one_attachment['image_src']['sizes']["slider-biggest"]['file'];
+					$image_big_f = $one_attachment['image_src']['sizes']["slider-big"]['file'];
+					$image_small_f = $one_attachment['image_src']['sizes']["large"]['file'];
+					$image_smallest_f = $one_attachment['image_src']['sizes']["medium_large"]['file'];
 					$url = $one_attachment['image_src']['url'];
 			?>
-					<div class="bg easy_slider_one_slide" style="background-image: url(<?php echo $url?>);">
+					<div class="bg easy_slider_one_slide" data-img-sizes="<?php echo $url?>, <?php echo $image_biggest_f?> 1600, <?php echo $image_big_f?> 1300, <?php echo $image_small_f?> 1000, <?php echo $image_smallest_f?> 768">
 						<div class="easy_slider_wrapper">
 							<div class="easy_slider_container">
 								<div class="easy_slider_signature">
@@ -243,6 +248,9 @@ function easy_slider_slick($attachments) {
 									<?php endif;?>
 									<?php if(isset($one_attachment['image_content'])):?>
 										<div class="easy_slider_content"><?php echo $one_attachment['image_content'];?></div>
+									<?php endif;?>
+									<?php if(isset($one_attachment['button_name']) && isset($one_attachment['button_link'])):?>
+										<div class="easy_slider_button_wrap"><a href="<?php echo $one_attachment['button_link'];?>"><?php echo $one_attachment['button_name'];?></a></div>
 									<?php endif;?>
 								</div>
 							</div>
@@ -256,31 +264,12 @@ function easy_slider_slick($attachments) {
 	</section>
 	<script type="text/javascript">
 		jQuery(function($){
-			var image_small_f = [];
-			var image_smallest_f = [];
-			<?php 
-				if(count($image_small_f)):
-					foreach ($image_small_f as $one_image):?>
-						image_small_f.push('<?php echo $one_image?>');
-					<?php endforeach;
-				endif;
-			?>
-
-			<?php 
-				if(count($image_smallest_f)):
-					foreach ($image_smallest_f as $one_image):?>
-						image_smallest_f.push('<?php echo $one_image?>');
-					<?php endforeach;
-				endif;
-			?>
-
 			var options = {
 				<?php if(isset($settings['show_types_settings']) && isset($settings['show_types_settings']['slider']) && isset($settings['show_types_settings']['slider']['show_arrows']) && $settings['show_types_settings']['slider']['show_arrows'] == 'on'):?>
 					arrows:true,
 				<?php else: ?>
 					arrows:false,
 				<?php endif;?>
-
 				<?php if(isset($settings['show_types_settings']) && isset($settings['show_types_settings']['slider']) && isset($settings['show_types_settings']['slider']['show_dots']) && $settings['show_types_settings']['slider']['show_dots'] == 'on'):?>
 					dots:true,
 				<?php else: ?>
@@ -288,22 +277,18 @@ function easy_slider_slick($attachments) {
 				<?php endif;?>
 			}
 
-
-			var rbgFeat = new resizeBg($('.one_slide'), image_small_f, image_smallest_f);
-			rbgFeat.init();   
-
 			$('.easy_slider').slick(options);
-
 			/*place dots*/
 			if(options.dots){
 				
 				var dots_w = $('.slick-dots').outerWidth();
 				$('.slick-dots').css({'marginLeft':-dots_w/2});
 			}
-		});     
-
+		})
 	</script>
 	<?php 
+
+
 }
 
 /**
@@ -311,18 +296,33 @@ function easy_slider_slick($attachments) {
  *
  * @since 1.0
  */
-function easy_slider() {
+function easy_slider($type="slider") {
 	$attachments = easy_slider_get_images();
 	if(count($attachments)){
-		$show_type = easy_slider_get_showtype();
-		switch ($show_type) {
-			case 'slider':
-				easy_slider_slick($attachments);
-				break;
-			
-			default:
-				easy_slider_gallery($attachments);
-				break;
+		$show_types = easy_slider_get_showtype();
+
+		if(count($show_types) == 1){
+			switch ($show_type[0]) {
+				case 'slider':
+					easy_slider_slick($attachments);
+					break;
+				
+				default:
+					easy_slider_gallery($attachments);
+					break;
+			}
+		} else {
+			if(in_array($type, $show_types)){
+				switch ($type) {
+					case 'slider':
+						easy_slider_slick($attachments);
+						break;
+					
+					default:
+						easy_slider_gallery($attachments);
+						break;
+				}
+			}
 		}
 	}
 }
