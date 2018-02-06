@@ -97,16 +97,15 @@
 	 */
 	function easy_slider_show_type_callback($settings){
 		$show_types = ["slider", "gallery"];
-		
 
 		foreach($show_types as $one_show_type):
-			$is_checked = isset( $settings['show_types']) && $settings['show_types'] == $one_show_type ? true : false;
+			$is_checked = in_array($one_show_type, $settings['show_types']) ? true : false;
 		?>
 			<table class="type_options">
 				<tr>
 					<td class="show_type">
 						<p>
-							<input type="radio" id="<?php echo $one_show_type?>" name="easy-slider[show_types]" value="<?php echo $one_show_type?>" <?php if($is_checked) echo 'checked' ?>/><label for="<?php echo $one_show_type?>"> <?php echo $one_show_type?></label>
+							<input type="checkbox" id="<?php echo $one_show_type?>" name="easy-slider[show_types][]" value="<?php echo $one_show_type?>" <?php if($is_checked) echo 'checked' ?>/><label for="<?php echo $one_show_type?>"> <?php echo $one_show_type?></label>
 						</p>
 					</td>
 					<td>

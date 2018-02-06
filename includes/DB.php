@@ -106,6 +106,22 @@
 				); 
 			}
 
+			if(!isset($meta['sizes']['slider-big'])){
+				$meta['sizes']['slider-big'] = array(
+					"file" => $url,
+					"width" => $meta['width'],
+					"height" => $meta['height']
+				); 
+			}
+
+			if(!isset($meta['sizes']['slider-biggest'])){
+				$meta['sizes']['slider-biggest'] = array(
+					"file" => $url,
+					"width" => $meta['width'],
+					"height" => $meta['height']
+				); 
+			}
+
 
 			return array(
 				'url' => site_url() . '/wp-content/uploads/' . $meta['file'],

@@ -73,6 +73,7 @@ if ( ! class_exists( 'Easy_Slider' ) ) {
 			require_once( EASY_SLIDER_INCLUDES . 'DB.php' );
 			require_once( EASY_SLIDER_INCLUDES . 'template-functions.php' );
 			require_once( EASY_SLIDER_INCLUDES . 'scripts.php' );
+			require_once( EASY_SLIDER_INCLUDES . 'sizes.php' );
 			require_once( EASY_SLIDER_INCLUDES . 'metabox.php' );
 			require_once( EASY_SLIDER_INCLUDES . 'admin-page.php' );
 		}
@@ -102,6 +103,8 @@ function easy_slider_activate() {
 		image_subtitle text NOT NULL,
 		image_signature text NOT NULL,
 		image_content text NOT NULL,
+		button_name text NOT NULL,
+		button_link text NOT NULL,
 		PRIMARY KEY (ID), 
 		INDEX `post_id` (`post_id`), 
 		INDEX `image_id` (`image_id`)
@@ -111,8 +114,4 @@ function easy_slider_activate() {
 }
 register_activation_hook( __FILE__, 'easy_slider_activate' );
 
-
-if(isset( $_POST['add_slide']) && $_POST['add_slide']){
-	echo 'here';
-}
 
