@@ -53,6 +53,9 @@
 				 . $this->table . ".image_subtitle, "
 				 . $this->table . ".image_signature, "
 				 . $this->table . ".image_content, "
+				 . $this->table . ".image_signature, "
+				 . $this->table . ".button_name, "
+				 . $this->table . ".button_link, "
 				 . $this->postmeta . ".meta_value as meta 
 				FROM " . $this->table . " 
 				JOIN " . $this->postmeta . " ON " . $this->postmeta . ".post_id = " . $this->table . ".image_id  
@@ -72,6 +75,8 @@
 				$attachments_res[$key]['image_subtitle'] = $one_att->image_subtitle;
 				$attachments_res[$key]['image_signature'] = $one_att->image_signature;
 				$attachments_res[$key]['image_content'] = $one_att->image_content;
+				$attachments_res[$key]['button_name'] = $one_att->button_name;
+				$attachments_res[$key]['button_link'] = $one_att->button_link;
 				$attachments_res[$key]['image_src'] = $this->imageDownsize( $one_att->meta );
 
 			}
