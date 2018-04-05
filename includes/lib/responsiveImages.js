@@ -89,7 +89,7 @@ jQuery(function($){
 				if($(el).tagName == 'IMG'){
 					$(el).attr('src', src);
 				} else {
-					$(el).css('backgroundImage', src);
+					$(el).css({'background-image': 'url(' + src + ')'});
 				}
 			}
 		}
