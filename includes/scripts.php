@@ -17,7 +17,7 @@ function easy_slider_scripts() {
 
 	// JS
 	wp_register_script( 'responsive-img', EASY_SLIDER_URL . 'includes/lib/responsiveImages.js', array( 'jquery' ), EASY_SLIDER_VERSION, false );
-	wp_register_script( 'slick', EASY_SLIDER_URL . 'includes/lib/slick/slick.min.js', array( 'jquery', 'responsive-bg' ), EASY_SLIDER_VERSION, false );
+	wp_register_script( 'slick', EASY_SLIDER_URL . 'includes/lib/slick/slick.min.js', array( 'jquery', 'responsive-img' ), EASY_SLIDER_VERSION, false );
 	wp_register_script( 'lightbox', EASY_SLIDER_URL . 'includes/lib/lightbox/js/lightbox.js', array( 'jquery' ), EASY_SLIDER_VERSION, false );
 
 	// CSS
