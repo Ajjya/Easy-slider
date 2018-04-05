@@ -32,7 +32,7 @@ function easy_slider_scripts() {
 		wp_register_style( 'easy-slider', EASY_SLIDER_URL . 'includes/css/easy-slider.css', '', EASY_SLIDER_VERSION, 'screen' );
 
 	// post type is not allowed, return
-	if ( ! easy_slider_allowed_post_type() )
+	if ( ! easy_slider_allowed_post_types() )
 		return;
 
 	
