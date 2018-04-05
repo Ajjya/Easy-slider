@@ -302,7 +302,7 @@ function easy_slider($type="slider") {
 		$show_types = easy_slider_get_showtype();
 
 		if(count($show_types) == 1){
-			switch ($show_type[0]) {
+			switch ($show_types[0]) {
 				case 'slider':
 					easy_slider_slick($attachments);
 					break;
