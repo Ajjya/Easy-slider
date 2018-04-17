@@ -170,7 +170,9 @@
 	                'image_title' => $this->escapeString($data['image_title']),
 	                'image_subtitle' => $this->escapeString($data['image_subtitle']),
 	                'image_signature' => $this->escapeString($data['image_signature']),
-	                'image_content' => $this->escapeString($data['image_content'])
+	                'image_content' => $this->escapeString($data['image_content']),
+	                'button_name' => $this->escapeString($data['button_name']),
+                	'button_link' => $this->escapeString($data['button_link'])
 				), 
 				array(
 					'ID' => $data['ID']
@@ -197,11 +199,13 @@
 					'updated_at' => $created_date,
 					'post_id' => $data['post_id'],
 					'image_id' => $data['image_id'],
-	                'image_order' => $data['image_order'],
-	                'image_title' => $this->escapeString($data['image_title']),
-	                'image_subtitle' => $this->escapeString($data['image_subtitle']),
-	                'image_signature' => $this->escapeString($data['image_signature']),
-	                'image_content' => $this->escapeString($data['image_content'])
+					'image_order' => $data['image_order'],
+					'image_title' => $this->escapeString($data['image_title']),
+					'image_subtitle' => $this->escapeString($data['image_subtitle']),
+					'image_signature' => $this->escapeString($data['image_signature']),
+					'image_content' => $this->escapeString($data['image_content']),
+					'button_name' => $this->escapeString($data['button_name']),
+					'button_link' => $this->escapeString($data['button_link'])
 				), 
 				array(
 					'%s', '%s', '%d', '%d', '%d', '%s', '%s', '%s', '%s'
