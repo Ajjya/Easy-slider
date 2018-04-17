@@ -71,17 +71,24 @@
 				$attachments_res[$key]['post_id'] = $one_att->post_id;
 				$attachments_res[$key]['image_id'] = $one_att->image_id;
 				$attachments_res[$key]['image_order'] = $one_att->image_order;
-				$attachments_res[$key]['image_title'] = $one_att->image_title;
-				$attachments_res[$key]['image_subtitle'] = $one_att->image_subtitle;
-				$attachments_res[$key]['image_signature'] = $one_att->image_signature;
-				$attachments_res[$key]['image_content'] = $one_att->image_content;
-				$attachments_res[$key]['button_name'] = $one_att->button_name;
-				$attachments_res[$key]['button_link'] = $one_att->button_link;
+				$attachments_res[$key]['image_title'] = $this->convertStringToHtml($one_att->image_title);
+				$attachments_res[$key]['image_subtitle'] = $this->convertStringToHtml($one_att->image_subtitle);
+				$attachments_res[$key]['image_signature'] = $this->convertStringToHtml($one_att->image_signature);
+				$attachments_res[$key]['image_content'] = $this->convertStringToHtml($one_att->image_content);
+				$attachments_res[$key]['button_name'] = $this->convertStringToHtml($one_att->button_name);
+				$attachments_res[$key]['button_link'] = $this->convertStringToHtml($one_att->button_link);
 				$attachments_res[$key]['image_src'] = $this->imageDownsize( $one_att->meta );
 
 			}
 
 			return $attachments_res;
+		}
+
+		private function convertStringToHtml($str){
+			$str = nl2br($str);
+			$str = html_entity_decode($str);
+
+			return $str;
 		}
 
 		private function imageDownsize( $meta ) {
