@@ -99,7 +99,12 @@
 		$show_types = ["slider", "gallery"];
 
 		foreach($show_types as $one_show_type):
-			$is_checked = in_array($one_show_type, $settings['show_types']) ? true : false;
+			if(isset($settings['show_types'])){
+				$is_checked = in_array($one_show_type, $settings['show_types']) ? true : false;
+			} else {
+				$is_checked = false;
+			}
+			
 		?>
 			<table class="type_options">
 				<tr>
