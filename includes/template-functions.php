@@ -147,13 +147,21 @@ function easy_slider_allowed_post_type() {
  * @return string
  */
 function easy_slider_get_images() {
-	global $post;
+	function easy_slider_get_images($post_id = false) {
 	$DB = new DB();
 
-	if( ! isset( $post->ID) )
-		return;
+	if(!$post_id){
+		global $post;
+		
 
-	$attachments = $DB->getAttachments($post->ID);
+		if( ! isset( $post->ID) )
+			return;
+
+		$post_id = $post->ID;
+	}
+
+
+	$attachments = $DB->getAttachments($post_id);
 	return $attachments;
 }
 
