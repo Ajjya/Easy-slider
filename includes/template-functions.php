@@ -146,8 +146,7 @@ function easy_slider_allowed_post_type() {
  * @since 1.0
  * @return string
  */
-function easy_slider_get_images() {
-	function easy_slider_get_images($post_id = false) {
+function easy_slider_get_images($post_id = false) {
 	$DB = new DB();
 
 	if(!$post_id){
