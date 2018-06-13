@@ -87,6 +87,7 @@
 		private function convertStringToHtml($str){
 			$str = nl2br($str);
 			$str = html_entity_decode($str);
+			$str = str_replace('\"', '"', $str);
 
 			return $str;
 		}
