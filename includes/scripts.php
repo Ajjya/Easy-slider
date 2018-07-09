@@ -16,20 +16,20 @@ function easy_slider_scripts() {
 		return;
 
 	// JS
-	wp_register_script( 'responsive-img', EASY_SLIDER_URL . 'includes/lib/responsiveImages.js', array( 'jquery' ), EASY_SLIDER_VERSION, false );
-	wp_register_script( 'slick', EASY_SLIDER_URL . 'includes/lib/slick/slick.min.js', array( 'jquery', 'responsive-img' ), EASY_SLIDER_VERSION, false );
-	wp_register_script( 'lightbox', EASY_SLIDER_URL . 'includes/lib/lightbox/js/lightbox.js', array( 'jquery' ), EASY_SLIDER_VERSION, false );
+	wp_register_script( 'responsive-img', EASY_SLIDER_URL . 'includes/lib/responsiveImages.min.js', array( 'jquery' ), EASY_SLIDER_VERSION, false );
+	wp_register_script( 'slick', EASY_SLIDER_URL . 'includes/lib/slick/slick.min.js', array( 'jquery', 'responsive-img' ), EASY_SLIDER_VERSION, false, true );
+	wp_register_script( 'lightbox', EASY_SLIDER_URL . 'includes/lib/lightbox/js/lightbox.js', array( 'jquery' ), EASY_SLIDER_VERSION, false, true );
 
 	// CSS
-	wp_register_style( 'slick', EASY_SLIDER_URL . 'includes/lib/slick/slick.css', '', EASY_SLIDER_VERSION, 'screen' );
-	wp_register_style( 'lightbox', EASY_SLIDER_URL . 'includes/lib/lightbox/css/lightbox.css', '', EASY_SLIDER_VERSION, 'screen' );
+	wp_register_style( 'slick', EASY_SLIDER_URL . 'includes/lib/slick/slick.min.css', '', EASY_SLIDER_VERSION, 'screen' );
+	wp_register_style( 'lightbox', EASY_SLIDER_URL . 'includes/lib/lightbox/css/lightbox.min.css', '', EASY_SLIDER_VERSION, 'screen' );
 
 
 	// create a new 'css/easy-image-gallery.css' in your child theme to override CSS file completely
-	if ( file_exists( get_stylesheet_directory() . '/css/easy-slider.css' ) )
-		wp_register_style( 'easy-slider', get_stylesheet_directory_uri() . '/css/easy-slider.css', '', EASY_SLIDER_VERSION, 'screen' );
+	if ( file_exists( get_stylesheet_directory() . '/css/easy-slider.min.css' ) )
+		wp_register_style( 'easy-slider', get_stylesheet_directory_uri() . '/css/easy-slider.min.css', '', EASY_SLIDER_VERSION, 'screen' );
 	else
-		wp_register_style( 'easy-slider', EASY_SLIDER_URL . 'includes/css/easy-slider.css', '', EASY_SLIDER_VERSION, 'screen' );
+		wp_register_style( 'easy-slider', EASY_SLIDER_URL . 'includes/css/easy-slider.min.css', '', EASY_SLIDER_VERSION, 'screen' );
 
 	// post type is not allowed, return
 	if ( ! easy_slider_allowed_post_types() )
